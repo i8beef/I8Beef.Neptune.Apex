@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageLicenseUrl>https://github.com/i8beef/Neptune.Apex/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/i8beef/Neptune.Apex</PackageProjectUrl>
+    <PackageTags>Neptune Apex Aqua Controller</PackageTags>
+    <Copyright>Copyright ©  2016</Copyright>
+    <Description>Library for integrating with Neptune Apex aqua controllers</Description>
+    <Authors>Michael Hallock</Authors>
+    <Company>Michael Hallock</Company>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <DocumentationFile>bin\Debug\netstandard2.0\I8Beef.Neptune.Apex.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\I8Beef.Neptune.Apex.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="I8Beef.CodeAnalysis.RuleSet" Version="1.0.11">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

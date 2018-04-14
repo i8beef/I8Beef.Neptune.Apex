@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "I8Beef.Neptune.Apex", "I8Beef.Neptune.Apex\I8Beef.Neptune.Apex.csproj", "{223BAB0F-A181-4C30-A135-8F00D0E870FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "I8Beef.Neptune.Apex.TestClient", "I8Beef.Neptune.Apex.TestClient\I8Beef.Neptune.Apex.TestClient.csproj", "{6BFF2CCD-ACDF-4A41-8150-EB10DB24695E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{223BAB0F-A181-4C30-A135-8F00D0E870FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{223BAB0F-A181-4C30-A135-8F00D0E870FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{223BAB0F-A181-4C30-A135-8F00D0E870FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{223BAB0F-A181-4C30-A135-8F00D0E870FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BFF2CCD-ACDF-4A41-8150-EB10DB24695E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BFF2CCD-ACDF-4A41-8150-EB10DB24695E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BFF2CCD-ACDF-4A41-8150-EB10DB24695E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BFF2CCD-ACDF-4A41-8150-EB10DB24695E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FDC1505-6F59-446A-B70F-2AFB2BE257A5}
+	EndGlobalSection
+EndGlobal
