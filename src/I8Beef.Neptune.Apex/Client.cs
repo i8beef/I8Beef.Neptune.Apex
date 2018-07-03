@@ -163,7 +163,7 @@ namespace I8Beef.Neptune.Apex
                 var response = await SendAsyncWithTimeout(requestMessage, cancellationToken)
                     .ConfigureAwait(false);
             }
-            catch (HttpRequestException ex) when (ex.InnerException != null && ex.InnerException.Message == "The server returned an invalid or unrecognized response")
+            catch (HttpRequestException ex) when (ex.InnerException != null && ex.InnerException.Message.StartsWith("The server returned an invalid or unrecognized response"))
             {
                 // This will ALWAYS throw an exception because the Apex API doesn't even return a valid HTTP protocol response
                 // Thus it is ignored. This is probably one of the more evil things I've ever written...
