@@ -8,7 +8,7 @@ namespace I8Beef.Neptune.Apex
     /// XML serializer.
     /// </summary>
     /// <typeparam name="TType">The type of object to serialize or deserialize.</typeparam>
-    public static class XmlSerializer<TType>
+    internal static class XmlSerializer<TType>
         where TType : class
     {
         /// <summary>

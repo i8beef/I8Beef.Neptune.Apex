@@ -8,10 +8,8 @@ using I8Beef.Neptune.Apex.Schema;
 
 namespace I8Beef.Neptune.Apex
 {
-    /// <summary>
-    /// Neptune Apex client.
-    /// </summary>
-    public class Client
+    /// <inheritdoc />
+    public class Client : IClient
     {
         private static HttpClient _httpClient = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
         private readonly string _host;
@@ -44,59 +42,35 @@ namespace I8Beef.Neptune.Apex
             _timeout = timeout;
         }
 
-        /// <summary>
-        /// Gets the current status structure of the unit.
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task<Status> GetStatus(CancellationToken cancellationToken = default(CancellationToken))
         {
             return await Get<Status>("http://" + _host + "/cgi-bin/status.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Gets the current program of the unit.
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task<Program> GetProgram(CancellationToken cancellationToken = default(CancellationToken))
         {
             return await Get<Program>("http://" + _host + "/cgi-bin/program.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Gets the current data log of the unit.
-        /// </summary>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task<DataLog> GetDataLog(CancellationToken cancellationToken = default(CancellationToken))
         {
             return await Get<DataLog>("http://" + _host + "/cgi-bin/datalog.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Gets the current data log of the unit.
-        /// </summary>
-        /// <param name="startDate">Start date.</param>
-        /// <param name="days">Days of logs to retrieve.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task<DataLog> GetDataLog(DateTime startDate, int days, CancellationToken cancellationToken = default(CancellationToken))
         {
             return await Get<DataLog>("http://" + _host + "/cgi-bin/datalog.xml?sdate=" + startDate.ToString("yyMMdd") + "&days=" + days, cancellationToken)
                 .ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Sets the outlet state for the designated outlet.
-        /// </summary>
-        /// <param name="outletName">The name of the outlet to set.</param>
-        /// <param name="state">The state to set the outlet to.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task SetOutlet(string outletName, OutletState state, CancellationToken cancellationToken = default(CancellationToken))
         {
             var request = new Dictionary<string, string>
@@ -109,12 +83,7 @@ namespace I8Beef.Neptune.Apex
                 .ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Sets the feed cycle to the designated state.
-        /// </summary>
-        /// <param name="cycle">The feed cycle to use.</param>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <returns>Async task.</returns>
+        /// <inheritdoc />
         public async Task SetFeed(FeedCycle cycle, CancellationToken cancellationToken = default(CancellationToken))
         {
             var request = new Dictionary<string, string>
