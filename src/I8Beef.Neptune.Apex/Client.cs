@@ -11,7 +11,7 @@ namespace I8Beef.Neptune.Apex
     /// <inheritdoc />
     public class Client : IClient
     {
-        private static HttpClient _httpClient = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
+        private static readonly HttpClient _httpClient = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
         private readonly string _host;
         private readonly string _username;
         private readonly string _password;
@@ -43,35 +43,35 @@ namespace I8Beef.Neptune.Apex
         }
 
         /// <inheritdoc />
-        public async Task<Status> GetStatus(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Status> GetStatus(CancellationToken cancellationToken = default)
         {
             return await Get<Status>("http://" + _host + "/cgi-bin/status.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<Program> GetProgram(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<Program> GetProgram(CancellationToken cancellationToken = default)
         {
             return await Get<Program>("http://" + _host + "/cgi-bin/program.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<DataLog> GetDataLog(CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<DataLog> GetDataLog(CancellationToken cancellationToken = default)
         {
             return await Get<DataLog>("http://" + _host + "/cgi-bin/datalog.xml", cancellationToken)
                 .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<DataLog> GetDataLog(DateTime startDate, int days, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<DataLog> GetDataLog(DateTime startDate, int days, CancellationToken cancellationToken = default)
         {
             return await Get<DataLog>("http://" + _host + "/cgi-bin/datalog.xml?sdate=" + startDate.ToString("yyMMdd") + "&days=" + days, cancellationToken)
                 .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task SetOutlet(string outletName, OutletState state, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task SetOutlet(string outletName, OutletState state, CancellationToken cancellationToken = default)
         {
             var request = new Dictionary<string, string>
             {
@@ -84,7 +84,7 @@ namespace I8Beef.Neptune.Apex
         }
 
         /// <inheritdoc />
-        public async Task SetFeed(FeedCycle cycle, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task SetFeed(FeedCycle cycle, CancellationToken cancellationToken = default)
         {
             var request = new Dictionary<string, string>
             {
@@ -97,7 +97,7 @@ namespace I8Beef.Neptune.Apex
                 .ConfigureAwait(false);
         }
 
-        private async Task<TType> Get<TType>(string url, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<TType> Get<TType>(string url, CancellationToken cancellationToken = default)
             where TType : class
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Get, url);
@@ -116,10 +116,12 @@ namespace I8Beef.Neptune.Apex
             return XmlSerializer<TType>.Deserialize(responseString);
         }
 
-        private async Task Post(string url, IDictionary<string, string> payload, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task Post(string url, IDictionary<string, string> payload, CancellationToken cancellationToken = default)
         {
-            var requestMessage = new HttpRequestMessage(HttpMethod.Post, url);
-            requestMessage.Content = new FormUrlEncodedContent(payload);
+            var requestMessage = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = new FormUrlEncodedContent(payload)
+            };
 
             requestMessage.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -149,7 +151,7 @@ namespace I8Beef.Neptune.Apex
         /// The HttpClient has a Timout feature that has been poorly implemented in that it raises an ambiguous exception on timeout.
         /// This wraps the HttpClient.SendAsync() and adds a proper timeout option.
         /// </remarks>
-        private async Task<HttpResponseMessage> SendAsyncWithTimeout(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task<HttpResponseMessage> SendAsyncWithTimeout(HttpRequestMessage requestMessage, CancellationToken cancellationToken = default)
         {
             var timoutCts = new CancellationTokenSource(_timeout);
             var aggregateCts = CancellationTokenSource.CreateLinkedTokenSource(timoutCts.Token, cancellationToken);
@@ -161,7 +163,7 @@ namespace I8Beef.Neptune.Apex
             }
             catch (TaskCanceledException) when (timoutCts.IsCancellationRequested)
             {
-                throw new TimeoutException("HTTP request to Ecobee API servers timed out.");
+                throw new TimeoutException("HTTP request timed out.");
             }
         }
     }
