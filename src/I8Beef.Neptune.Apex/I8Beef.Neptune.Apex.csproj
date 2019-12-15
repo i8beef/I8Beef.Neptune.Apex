@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <PackageLicenseUrl>https://github.com/i8beef/Neptune.Apex/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/i8beef/Neptune.Apex</PackageProjectUrl>
     <PackageTags>Neptune Apex Aqua Controller</PackageTags>
