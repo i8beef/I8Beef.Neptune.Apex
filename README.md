@@ -1,7 +1,7 @@
 # Neptune.Apex
 
-[![Build status](https://ci.appveyor.com/api/projects/status/4y4juu7vo2k3e98a/branch/release?svg=true)](https://ci.appveyor.com/project/i8beef/i8beef-neptune-apex/branch/release)
-[![Build status](https://ci.appveyor.com/api/projects/status/4y4juu7vo2k3e98a/branch/master?svg=true)](https://ci.appveyor.com/project/i8beef/i8beef-neptune-apex/branch/master)
+![Build](https://github.com/i8beef/I8Beef.Neptune.Apex/actions/workflows/build.yml/badge.svg?branch=master)
+![Release](https://github.com/i8beef/I8Beef.Neptune.Apex/actions/workflows/release.yml/badge.svg)
 
 Library for communicating with Neptune Apex controllers
 
